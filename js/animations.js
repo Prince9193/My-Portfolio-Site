@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
   'use strict';
 
+  console.log('Animations script loaded!');
+
+  // Immediately animate the hero section elements
+  animateHeroElements();
+
   // Intersection Observer for revealing elements as they scroll into view
   const observerOptions = {
     root: null, // using viewport as container
@@ -12,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const animateObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        console.log('Element is intersecting:', entry.target);
         // Get data attribute for animation type
         const animationType = entry.target.dataset.animate || 'fade-in-up';
         entry.target.classList.add(animationType);
@@ -34,6 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (entry.isIntersecting) {
         const skillLevel = entry.target;
         const width = skillLevel.dataset.width || skillLevel.style.width;
+        
+        console.log('Animating skill bar:', width);
         
         // Reset width to 0 before animation
         skillLevel.style.width = '0';
@@ -70,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Start typing effect after a delay
     setTimeout(typeEffect, 1000);
+    console.log('Typing effect initialized');
   }
 
   // Parallax effect for hero section
@@ -85,10 +94,55 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
     });
+    console.log('Parallax effect initialized');
+  }
+
+  // Initial animations for hero section
+  function animateHeroElements() {
+    console.log('Animating hero elements');
+    
+    const heroTitle = document.querySelector('.hero-title');
+    const heroDescription = document.querySelector('.hero-description');
+    const heroButtons = document.querySelector('.hero-buttons');
+    const heroShape = document.querySelector('.hero-shape');
+    
+    if (heroTitle) {
+      heroTitle.style.opacity = '0';
+      setTimeout(() => {
+        heroTitle.style.opacity = '1';
+        heroTitle.classList.add('fade-in-down');
+      }, 300);
+    }
+    
+    if (heroDescription) {
+      heroDescription.style.opacity = '0';
+      setTimeout(() => {
+        heroDescription.style.opacity = '1';
+        heroDescription.classList.add('fade-in-up');
+      }, 700);
+    }
+    
+    if (heroButtons) {
+      heroButtons.style.opacity = '0';
+      setTimeout(() => {
+        heroButtons.style.opacity = '1';
+        heroButtons.classList.add('fade-in-up');
+      }, 900);
+    }
+    
+    if (heroShape) {
+      heroShape.style.opacity = '0';
+      setTimeout(() => {
+        heroShape.style.opacity = '0.8';
+        heroShape.classList.add('fade-in');
+      }, 1000);
+    }
   }
 
   // Add animation classes to elements that should be animated
   function applyAnimationClasses() {
+    console.log('Applying animation classes');
+    
     // Project cards
     document.querySelectorAll('.project-card').forEach((card, index) => {
       card.classList.add('animate');
@@ -134,6 +188,16 @@ document.addEventListener('DOMContentLoaded', function() {
       contactForm.classList.add('animate');
       contactForm.dataset.animate = 'fade-in-right';
     }
+
+    // Add animation to all section elements
+    document.querySelectorAll('section').forEach(section => {
+      const elements = section.querySelectorAll('h3, p, .btn, .skill-item, .project-card');
+      elements.forEach((element, index) => {
+        element.classList.add('animate');
+        element.dataset.animate = 'fade-in-up';
+        element.style.animationDelay = `${0.1 * index}s`;
+      });
+    });
   }
 
   // Animate logo on hover
@@ -225,5 +289,27 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('mouseover', () => {
       cursor.style.opacity = '1';
     });
+    
+    console.log('Custom cursor initialized');
   }
+
+  // Trigger animations on scroll
+  window.addEventListener('scroll', function() {
+    const scrolled = window.scrollY;
+    const windowHeight = window.innerHeight;
+    
+    // Animate elements when scrolled into view
+    document.querySelectorAll('.animate:not(.fade-in-up):not(.fade-in-down):not(.fade-in-left):not(.fade-in-right):not(.zoom-in)').forEach(element => {
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      if (scrolled > elementPosition - windowHeight + 100) {
+        const animationType = element.dataset.animate || 'fade-in-up';
+        element.classList.add(animationType);
+      }
+    });
+  });
+
+  // Initial scroll trigger
+  setTimeout(function() {
+    window.dispatchEvent(new Event('scroll'));
+  }, 100);
 });

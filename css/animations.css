@@ -11,73 +11,88 @@
 @keyframes fadeInUp {
   0% {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(50px);
+    filter: blur(5px);
   }
   100% {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
 }
 
 @keyframes fadeInDown {
   0% {
     opacity: 0;
-    transform: translateY(-30px);
+    transform: translateY(-50px);
+    filter: blur(5px);
   }
   100% {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
 }
 
 @keyframes fadeInLeft {
   0% {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-50px);
+    filter: blur(5px);
   }
   100% {
     opacity: 1;
     transform: translateX(0);
+    filter: blur(0);
   }
 }
 
 @keyframes fadeInRight {
   0% {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(50px);
+    filter: blur(5px);
   }
   100% {
     opacity: 1;
     transform: translateX(0);
+    filter: blur(0);
   }
 }
 
 @keyframes zoomIn {
   0% {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.8);
+    filter: blur(10px);
   }
   100% {
     opacity: 1;
     transform: scale(1);
+    filter: blur(0);
   }
 }
 
 @keyframes morphShape {
   0% {
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    transform: rotate(0deg);
   }
   25% {
     border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+    transform: rotate(5deg);
   }
   50% {
     border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+    transform: rotate(0deg);
   }
   75% {
     border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+    transform: rotate(-5deg);
   }
   100% {
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    transform: rotate(0deg);
   }
 }
 
@@ -88,7 +103,7 @@
   }
   100% {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(15px);
   }
 }
 
@@ -104,12 +119,15 @@
 @keyframes pulse {
   0% {
     transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(93, 76, 255, 0.4);
   }
   50% {
     transform: scale(1.05);
+    box-shadow: 0 0 20px 10px rgba(93, 76, 255, 0.2);
   }
   100% {
     transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(93, 76, 255, 0.4);
   }
 }
 
@@ -128,6 +146,54 @@
   }
   100% {
     background-position: 400px 0;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    text-shadow: 0 0 5px rgba(93, 76, 255, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(93, 76, 255, 0.8), 0 0 30px rgba(93, 76, 255, 0.6);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(93, 76, 255, 0.5);
   }
 }
 
@@ -164,9 +230,27 @@
   animation: rotate 20s linear infinite;
 }
 
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.bounce {
+  animation: bounce 2s ease infinite;
+}
+
+.shake {
+  animation: shake 0.5s ease;
+}
+
+.glow {
+  animation: glowPulse 2s infinite;
+}
+
 /* Initial Animation States */
 .animate {
   opacity: 0;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 .delay-1 {
@@ -202,6 +286,11 @@
   animation-delay: 0.3s;
 }
 
+.hero-title .highlight {
+  animation: glowPulse 2s infinite;
+  animation-delay: 1.5s;
+}
+
 .hero-subtitle {
   animation: fadeInDown 1s ease forwards;
   animation-delay: 0.5s;
@@ -218,9 +307,10 @@
 }
 
 .hero-shape {
-  opacity: 0;
-  animation: fadeIn 1.5s ease forwards, morphShape 20s infinite alternate;
-  animation-delay: 1s;
+  animation: fadeIn 1.5s ease forwards, morphShape 20s infinite alternate, float 10s ease-in-out infinite;
+  animation-delay: 1s, 1s, 1s;
+  transform-origin: center center;
+  will-change: transform, border-radius;
 }
 
 /* Navbar Animation */
@@ -229,20 +319,81 @@
   animation: fadeInDown 1s ease forwards;
 }
 
+.logo {
+  animation: bounce 5s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
 /* Projects Animation */
 .project-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  will-change: transform, box-shadow;
+}
+
+.project-card:hover {
+  transform: translateY(-15px) scale(1.03);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.project-card:hover .project-img-placeholder {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+.project-card:hover .project-title {
+  color: var(--primary-color);
 }
 
 /* Animate skill bars on intersection */
 .skill-level.animate {
   width: 0 !important;
-  transition: width 1.5s ease-in-out;
+  transition: width 1.5s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 /* Form submit button animation */
+.submit-btn {
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(93, 76, 255, 0.3);
+}
+
 .submit-btn:hover .btn-icon {
   animation: pulse 1s infinite;
+}
+
+.submit-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.submit-btn:hover::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
 }
 
 /* Shimmer effect for placeholders */
@@ -250,4 +401,17 @@
   background: linear-gradient(to right, var(--bg-light) 8%, var(--bg-color) 18%, var(--bg-light) 33%);
   background-size: 800px 104px;
   animation: shimmer 2s infinite linear;
+}
+
+/* Scroll indicator animation */
+.scroll-indicator .mouse {
+  animation: float 2s ease-in-out infinite;
+}
+
+.scroll-indicator .wheel {
+  animation: scrollWheel 1.5s infinite;
+}
+
+.arrow {
+  animation: bounce 2s infinite;
 }
