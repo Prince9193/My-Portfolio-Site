@@ -1,0 +1,72 @@
+Psgthh Sehns Regrhst
+City, State | +92 9876543210 | pfbsrb.bbbst@example.com
+
+
+---
+
+PROFILE
+
+Web developer with experience in HTML, CSS, and JavaScript, and a passion for building responsive and user-friendly websites. Currently pursuing a B-Tech in Computer Science with a specialization in Artificial Intelligence and Machine Learning, aiming to apply my technical skills in both web development and AI/ML projects to create innovative solutions.
+
+
+---
+
+SKILLS
+
+Programming: Python, C, JavaScript, HTML, CSS, Java
+
+Database: MySQL, MongoDB
+
+Data Analysis: Pandas, NumPy
+
+Prompt Engineering: Skilled in designing and optimizing prompts for AI/ML models to improve performance and generate accurate outputs
+
+Soft Skills: Teamwork, problem-solving, fast learner
+
+
+
+---
+
+PROJECTS
+
+Video Translating Tool for Tourists
+Developed a Python-based video translating tool to help tourists share their adventures globally. The tool's backend processes include extracting audio from video, converting it to text, translating the text, and converting it back to audio.
+Technologies used:
+
+Python (backend development)
+
+Speech-to-Text Conversion
+
+Text Translation
+
+Text-to-Speech Conversion
+
+HTML, CSS, JavaScript (frontend and backend integration)
+
+
+Face Recognition Attendance Management System
+Developed a Python-based Face Recognition Attendance Management System that automates attendance marking by recognizing student faces from classroom images. Enhances accuracy and reduces manual efforts.
+Technologies used:
+
+Python (backend development)
+
+OpenCV & face_recognition (face detection and recognition)
+
+MySQL (database management)
+
+HTML, CSS, JavaScript (frontend and backend integration)
+
+
+
+---
+
+EDUCATION
+
+XYZ Institute of Engineering & Technology
+Bachelor of Technology in Computer Science
+(Specialization in Artificial Intelligence and Machine Learning)
+2023 - Present
+
+ABC Senior Secondary School, City
+Completed High School
+2013 - 2023
