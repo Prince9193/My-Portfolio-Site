@@ -609,9 +609,11 @@ p {
 
 /* Contact Section */
 .contact-container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: var(--space-xl);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .contact-info {
@@ -619,6 +621,7 @@ p {
   padding: var(--space-lg);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
+  width: 100%;
 }
 
 .contact-item {
@@ -654,6 +657,7 @@ p {
   display: flex;
   gap: var(--space-md);
   margin-top: var(--space-lg);
+  justify-content: center;
 }
 
 .social-link {
